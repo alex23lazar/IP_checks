@@ -62,8 +62,8 @@ if __name__ == "__main__":
     init(autoreset=True)
 
     # Define the range of IP addresses
-    start_ip = "10.131.197.1"
-    end_ip = "10.131.197.254"
+    start_ip = "192.168.0.1"
+    end_ip = "192.168.0.254"
 
     ip_list = ip_range(start_ip, end_ip)
 
