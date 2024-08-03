@@ -1,6 +1,7 @@
 import ping3  
 import concurrent.futures
-from colorama import init, Fore, Style #type: ignore
+import subprocess
+from colorama import init, Fore, Style
 
 def ip_range(start_ip, end_ip):
     start = list(map(int, start_ip.split(".")))
@@ -48,34 +49,35 @@ def display_ips_with_highlight(ip_list, search_term):
             found_ips += 1
         else:
             print(ip)
-    print(f"\n[!] Number of found IPs: {found_ips}\n")
+    print(f"\n</> Number of found IPs: {found_ips}\n")
 
 def search_ip(ip_list):
     while True:
-        search_term = input("[!] Enter the last octet to search (or type 'exit' to quit): ")
+        search_term = input("</> Enter the last octet to search (or type 'exit' to quit): ")
         if search_term.lower() == 'exit':
             break
         search_term = f".{search_term}"
+        subprocess.call("cls", shell=True)
         display_ips_with_highlight(ip_list, search_term)
 
 if __name__ == "__main__":
     init(autoreset=True)
 
     # Define the range of IP addresses
-    start_ip = "10.131.197.1"
-    end_ip = "10.131.197.254"
+    start_ip = "10.131.171.1"
+    end_ip = "10.131.171.254"
 
     ip_list = ip_range(start_ip, end_ip)
 
     active_ips = check_multiple_ips(ip_list)
 
     if active_ips:
-        print("\n[!] Active IPs:\n")
+        print("\n</> Active IPs:\n")
         for ip in active_ips:
             print(ip)
-        print(f"\n[!] Number of active IPs: {len(active_ips)}\n")
+        print(f"\n</> Number of active IPs: {len(active_ips)}\n")
     else:
-        print("[!] No active IPs found.")
+        print("</> No active IPs found.")
     
     # Start the IP search functionality
     search_ip(active_ips)
